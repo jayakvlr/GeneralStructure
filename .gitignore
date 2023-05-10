@@ -83,7 +83,7 @@ profile_default/
 ipython_config.py
 
 # Environments
-/artifacts/
+artifacts/
 .env
 .localvenv
 env/
