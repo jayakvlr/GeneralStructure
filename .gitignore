@@ -84,6 +84,7 @@ ipython_config.py
 
 # Environments
 artifacts/
+catboost_info/
 .env
 .localvenv
 env/
