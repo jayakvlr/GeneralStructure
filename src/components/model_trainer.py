@@ -2,7 +2,7 @@
 import os
 import sys
 from  dataclasses import dataclass
-
+import yaml
 from catboost import CatBoostRegressor
 from sklearn.ensemble import AdaBoostRegressor,RandomForestRegressor,GradientBoostingRegressor
 from sklearn.linear_model import LinearRegression
@@ -37,7 +37,7 @@ class ModelTrainer:
             }
             
             utils=Utils()
-            model_report:dict=utils.eval_model(X_train,y_train,X_test,y_test,models)
+            model_report:dict=utils.eval_model(X_train,y_train,X_test,y_test,models,self.hyperparameter_tuning())
             best_model_score=max(sorted(model_report.values()))
             best_model_name=list(model_report.keys())[list(model_report.values()).index(best_model_score)]
             best_model=models[best_model_name]
@@ -45,12 +45,26 @@ class ModelTrainer:
                 raise CustomException("None of the model is performing well")
             logging.info(f"Best model is {best_model_name} with score {best_model_score}")
             utils.save_object(self.model_trainer_config.trained_model_path,best_model)
-            pred=best_model.predict(X_test)
-            r2_scre=r2_score(y_test,pred)
-            
-            return best_model_name,r2_scre
+            logging.info("Model saved")
+            return best_model_name,best_model_score
 
         except Exception as e:
             logging.error(e)
             raise CustomException(e,sys)
 
+    def hyperparameter_tuning(self):
+        try:
+            with open("src\hyperparams.yaml",'r') as f:
+                hyperparams=yaml.safe_load(f)
+            logging.info("Hyperparameter tuning started")
+            return hyperparams
+        except Exception as e:
+            logging.error(e)
+            raise CustomException(e,sys)
+            
+    def load_object(self,filepath):
+        try:
+            with open(filepath,"rb") as f:
+                return dill.load(f)
+        except Exception as e:
+            raise CustomException(e,sys)

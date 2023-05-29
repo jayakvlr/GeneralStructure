@@ -1,0 +1,42 @@
+LinearRegression: {}
+
+DecisionTreeRegressor:
+  max_depth: [1, 50]
+  min_samples_split: [2, 50]
+  min_samples_leaf: [1, 50]
+
+RandomForestRegressor:
+  n_estimators: [10, 200]
+  max_depth: [1, 50]
+  min_samples_split: [2, 50]
+  min_samples_leaf: [1, 50]
+  #max_features: ["auto", "sqrt", "log2"]
+
+AdaBoostRegressor:
+  n_estimators: [50, 200]
+  learning_rate: [0.01, 1.0]
+
+GradientBoostingRegressor:
+  n_estimators: [50, 200]
+  learning_rate: [0.01, 1.0]
+  subsample: [0.1, 1.0]
+  max_depth: [1, 10]
+
+XGBRegressor:
+  n_estimators: [50, 200]
+  learning_rate: [0.01, 1.0]
+  max_depth: [1, 10]
+  min_child_weight: [1, 10]
+  gamma: [0, 0.5]
+  subsample: [0.1, 1.0]
+
+CatBoostRegressor:
+  iterations: [50, 200]
+  learning_rate: [0.01, 1.0]
+  depth: [1, 10]
+  l2_leaf_reg: [2, 30]
+
+KNeighborsRegressor:
+  n_neighbors: [1, 50]
+  weights: ["uniform", "distance"]
+  p: [1, 2]

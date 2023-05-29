@@ -9,4 +9,6 @@ dill
 xgboost
 catboost
 lightgbm
+scikit-optimize
+flask
 -e .

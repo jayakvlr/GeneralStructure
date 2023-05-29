@@ -16,7 +16,7 @@ from src.util import Utils
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path=os.path.join('artifacts',"proprocessor.pkl")
+    preprocessor_obj_file_path=os.path.join('artifacts',"preprocessor.pkl")
 
 class DataTransformation:
     def __init__(self):
@@ -31,7 +31,7 @@ class DataTransformation:
             numerical_columns = ["writing_score", "reading_score"]
             categorical_columns = [
                 "gender",
-                "race_ethnicity",
+                "race_ethinicity",
                 "parental_level_of_education",
                 "lunch",
                 "test_preparation_course",
